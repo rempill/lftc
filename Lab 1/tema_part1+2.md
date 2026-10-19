@@ -108,6 +108,12 @@ Cifra = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" .
 
 ## 2. 3 programe sursa corecte
 
+*Rulare:*
+```bash
+g++ p1.cpp -o p1.exe
+.\p1.exe
+```
+
 ### Program 1 - Perimetrul si aria cercului
 
 ```cpp
@@ -202,7 +208,7 @@ int main() {
 }
 ```
 
-### 3.2. 2 erori conforme MLP, dar valide în C++
+### 3.2. 2 erori in MLP, dar valide in C++
 
 Erori:
 
@@ -288,7 +294,6 @@ string getAtomTypeName(AtomType t) {
     }
 }
 
-// Functia principala de scanare lexicala
 vector<Token> scanTokens(const string& src) {
     vector<Token> tokens;
     int line = 1;
@@ -340,7 +345,6 @@ vector<Token> scanTokens(const string& src) {
 
         // 4. Separatori
         if (SEPARATORS.count(c)) {
-            // Caz de eroare lexicala in MLP: punct urmat imediat de cifra (ex: .75)
             if (c == '.' && i + 1 < n && isdigit(static_cast<unsigned char>(src[i + 1]))) {
                 string invalidFloat = ".";
                 i++;
@@ -452,11 +456,11 @@ int main(int argc, char* argv[]) {
 
     vector<Token> tokens = scanTokens(buffer.str());
 
-    cout << "================= TABEL ATOMI LEXICALI ================\n";
+    cout << "----------------- TABEL ATOMI LEXICALI ----------------\n";
     cout << left 
          << setw(6)  << "Linie" 
          << setw(18) << "Categorie" 
-         << setw(22) << "Lexem (Valoare)" 
+         << setw(22) << "Lexem" 
          << "Mesaj Eroare\n";
     cout << "----------------------------------------------------------------------\n";
 
@@ -473,3 +477,46 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+```
+
+---
+
+## 3. Rulare si Testare
+
+```bash
+g++ -std=c++17 -Wall analizator.cpp -o analizator
+```
+
+**Testare P1:**
+```powershell
+./analizator p1.cpp
+```
+
+**Testare P2:**
+```powershell
+./analizator p2.cpp
+```
+
+**Testare P3:**
+```powershell
+./analizator p3.cpp
+```
+---
+
+**Testare Eroare 1 (`p1_error.cpp`):**
+```powershell
+./analizator p1_error.cpp
+```
+```bash
+Linie 5: [EROARE] Identificator invalid (incepe cu cifra) pentru 2var
+Linie 6: [EROARE] Sir de caractere neterminat pentru "Eroare sir; // sir neterminat
+```
+
+**Testare Eroare 2 (`p2_error.cpp`):**
+```powershell
+./analizator p2_error.cpp
+```
+```bash
+Linie 5: [EROARE] Identificatorul depaseste 8 caractere pentru identificatorLung (lungime 17 > limitarea MLP de 8 caractere)
+Linie 8: [EROARE] Simbol necunoscut/nepermis pentru caracterul punct . din .75 (constanta reala in MLP impune cifre inainte de virgula/punct)
+```

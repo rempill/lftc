@@ -219,11 +219,11 @@ int main(int argc, char* argv[]) {
 
     vector<Token> tokens = scanTokens(buffer.str());
 
-    cout << "================= TABEL ATOMI LEXICALI ================\n";
+    cout << "----------------- TABEL ATOMI LEXICALI ----------------\n";
     cout << left
          << setw(6)  << "Linie"
          << setw(18) << "Categorie"
-         << setw(22) << "Lexem (Valoare)"
+         << setw(22) << "Lexem"
          << "Mesaj Eroare\n";
     cout << "----------------------------------------------------------------------\n";
 

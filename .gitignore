@@ -1,0 +1,36 @@
+# Prerequisites / Compilers / Binaries
+*.exe
+*.out
+*.app
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Build & CMake directories
+build/
+bin/
+out/
+cmake-build-*/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Flex & Bison / Lex & Yacc temporary outputs (common in LFTC)
+lex.yy.c
+y.tab.c
+y.tab.h
+*.output
